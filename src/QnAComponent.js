@@ -24,7 +24,7 @@ const QnAComponent = ({ currentChat, onSaveChat, onToggleSidebar, sidebarOpen })
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:3002/ask', { question: query });
+      const res = await axios.post('https://zs-demo-backend.onrender.com/ask', { question: query });
       const botMessage = { type: 'bot', content: res.data.answer };
       const finalMessages = [...newMessages, botMessage];
       setMessages(finalMessages);
@@ -49,7 +49,7 @@ const QnAComponent = ({ currentChat, onSaveChat, onToggleSidebar, sidebarOpen })
     reader.onloadend = async () => {
       const base64Content = reader.result.split(',')[1];
       try {
-        const res = await axios.post('http://localhost:3002/upload', {
+        const res = await axios.post('https://zs-demo-backend.onrender.com/upload', {
           fileName: file.name,
           fileType: file.type,
           fileContentBase64: base64Content,
